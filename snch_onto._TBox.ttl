@@ -1,0 +1,168 @@
+@prefix snch: <https://senegalculturalheritage/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### Définition des Classes ###
+snch:Tariqa rdf:type rdfs:Class ;
+    rdfs:label "Tariqa"@en ;
+    rdfs:comment "A Sufi order or spiritual path, typically established by a saintly figure or a charismatic spiritual leader."@en ;
+    owl:disjointWith snch:Person , snch:Artifact ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Person rdf:type rdfs:Class ;
+    rdfs:label "Person"@en ;
+    rdfs:comment "Represents individuals involved in events, affiliations, and roles within the Tariqa context."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Founder rdf:type rdfs:Class ;
+    rdfs:label "Founder"@en ;
+    rdfs:comment "The saintly figure or spiritual leader who founded the Tariqa."@en ;
+    rdfs:subClassOf snch:Actor .
+
+snch:Actor rdf:type rdfs:Class ;
+    rdfs:label "Actor"@en ;
+    rdfs:comment "Represents agents or individuals involved in events. (CIDOC-CRM: E39)"@en ;
+    rdfs:subClassOf snch:Person .
+
+snch:Spiritual_Practices rdf:type rdfs:Class ;
+    rdfs:label "Spiritual Practices"@en ;
+    rdfs:comment "Specific rituals, prayers, and disciplines prescribed by the Tariqa for spiritual growth."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Hierarchy rdf:type rdfs:Class ;
+    rdfs:label "Hierarchy"@en ;
+    rdfs:comment "The organizational structure of the Tariqa, including ranks or levels of authority among its members."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Caliph rdf:type rdfs:Class ;
+    rdfs:label "Caliph"@en ;
+    rdfs:comment "The spiritual leader and successor of the founder within the Tariqa."@en ;
+    rdfs:subClassOf snch:Actor .
+
+snch:Doctrine rdf:type rdfs:Class ;
+    rdfs:label "Doctrine"@en ;
+    rdfs:comment "The core beliefs, principles, and teachings of the Tariqa."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Artifact rdf:type rdfs:Class ;
+    rdfs:label "Artifact"@en ;
+    rdfs:comment "Represents tangible objects or items of cultural, religious, or historical significance associated with the Tariqa."@en ;
+    rdfs:subClassOf snch:Man_Made_Thing .
+
+snch:Man_Made_Thing rdf:type rdfs:Class ;
+    rdfs:label "Man-Made Thing"@en ;
+    rdfs:comment "Represents physical objects created by humans. (CIDOC-CRM: E71)"@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Place rdf:type rdfs:Class ;
+    rdfs:label "Place"@en ;
+    rdfs:comment "Represents geographic locations. (CIDOC-CRM: E53)"@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Lineage rdf:type rdfs:Class ;
+    rdfs:label "Lineage"@en ;
+    rdfs:comment "The spiritual lineage or chain of transmission tracing back to the founder of the Tariqa."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Dhikr rdf:type rdfs:Class ;
+    rdfs:label "Dhikr"@en ;
+    rdfs:comment "The practice of invoking and remembering God through chanting, recitation, or meditation."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:City rdf:type rdfs:Class ;
+    rdfs:label "City"@en ;
+    rdfs:comment "Represents cities or urban centers where Tariqa activities, centers, or communities are located."@en ;
+    rdfs:subClassOf snch:Place .
+
+snch:Country rdf:type rdfs:Class ;
+    rdfs:label "Country"@en ;
+    rdfs:comment "Represents countries or geopolitical entities where Tariqa activities, centers, or communities are located."@en ;
+    rdfs:subClassOf snch:Place .
+
+snch:Building rdf:type rdfs:Class ;
+    rdfs:label "Building"@en ;
+    rdfs:comment "Represents physical structures or buildings of cultural or historical significance associated with the Tariqa."@en ;
+    rdfs:subClassOf snch:Artifact .
+
+snch:Activity rdf:type rdfs:Class ;
+    rdfs:label "Activity"@en ;
+    rdfs:comment "Represents activities or processes carried out by actors. (CIDOC-CRM: E7)"@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Period rdf:type rdfs:Class ;
+    rdfs:label "Period"@en ;
+    rdfs:comment "Represents a period of time in the ontology (CIDOC-CRM: E4)."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Event rdf:type rdfs:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "Represents events or occurrences that happen in time and space. (CIDOC-CRM: E5)"@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Sufi_Literature rdf:type rdfs:Class ;
+    rdfs:label "Sufi Literature"@en ;
+    rdfs:comment "The writings, poetry, and teachings produced by the leaders and followers of the Tariqa."@en ;
+    rdfs:subClassOf owl:Thing .
+
+snch:Community rdf:type rdfs:Class ;
+    rdfs:label "Community"@en ;
+    rdfs:comment "The collective body of followers within the Tariqa, bound together by shared commitment to spiritual growth."@en ;
+    rdfs:subClassOf owl:Thing .
+
+### Définition des Propriétés ###
+snch:located_in rdf:type owl:ObjectProperty ;
+    rdfs:label "located in"@en ;
+    rdfs:comment "Indicates the geographical location where an entity is situated."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range snch:Country ;
+    owl:inverseOf snch:has_location .
+
+snch:has_location rdf:type owl:ObjectProperty ;
+    rdfs:label "has location"@en ;
+    rdfs:comment "Specifies the location of a geographical entity."@en ;
+    rdfs:domain owl:Thing ;
+    rdfs:range snch:City .
+
+snch:contains_building rdf:type owl:ObjectProperty ;
+    rdfs:label "contains building"@en ;
+    rdfs:comment "Specifies a building located within a geographical entity such as a city."@en ;
+    rdfs:domain snch:City ;
+    rdfs:range snch:Building .
+
+snch:founded_by rdf:type owl:ObjectProperty ;
+    rdfs:label "founded by"@en ;
+    rdfs:comment "Indicates the founder of a specific Tariqa."@en ;
+    rdfs:domain snch:Tariqa ;
+    rdfs:range snch:Founder ;
+    owl:inverseOf snch:has_founded .
+
+snch:has_hierarchy rdf:type owl:ObjectProperty ;
+    rdfs:label "has hierarchy"@en ;
+    rdfs:comment "Indicates the hierarchical structure within a Tariqa."@en ;
+    rdfs:domain snch:Tariqa ;
+    rdfs:range snch:Hierarchy .
+
+snch:belongs_to_lineage rdf:type owl:ObjectProperty ;
+    rdfs:label "belongs to lineage"@en ;
+    rdfs:comment "Indicates the spiritual lineage or chain of transmission associated with a Tariqa."@en ;
+    rdfs:domain snch:Tariqa ;
+    rdfs:range snch:Lineage .
+
+snch:practices_dhikr rdf:type owl:ObjectProperty ;
+    rdfs:label "practices dhikr"@en ;
+    rdfs:comment "Specifies the practice of dhikr (remembrance of God) within a Tariqa."@en ;
+    rdfs:domain snch:Tariqa ;
+    rdfs:range snch:Dhikr ;
+    owl:inverseOf snch:is_practiced_by .
+
+snch:has_father rdf:type owl:ObjectProperty ;
+    rdfs:label "has father"@en ;
+    rdfs:comment "Specifies the father of an individual."@en ;
+    rdfs:domain snch:Person ;
+    rdfs:range snch:Person ;
+    rdfs:subPropertyOf snch:has_parent .
+
+### Correction Complète ###
+
